@@ -1,3 +1,16 @@
+// Función para mezclar un array usando el algoritmo de Fisher-Yates
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // Genera un índice aleatorio entre 0 y i
+        const j = Math.floor(Math.random() * (i + 1));
+        // Intercambia los elementos array[i] y array[j]
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+
+
+
 const profiles = [
     {
         name: "Novi",
@@ -26,6 +39,69 @@ const profiles = [
             "images/german3.png"
         ]
     },
+
+    {
+        name: "Skelly",
+        description: "soy la Skelly, desde La Serena con todo el flow\nDescuídame 5 segundos y te dibujo embarazado\nTe conté que tengo un podcast con el Taku?\nCompra poleras si vas a la serena, por favor...\nuwu",
+        images: [
+            "images/skelly1.png",
+            "images/skelly2.png",
+            "images/skelly3.png"
+        ]
+    }, 
+    {
+        name: "Gio",
+        description: "Dame 5 segundos y te dejo el baño con pecas\nFui a la piscina y me enfermé\nLeo los mensajes de tinder en el baño\nSalí a comprar pan y no he vuelto ",
+        images: [
+            "images/gio1.png",
+            "images/gio2.png",
+            "images/gio3.png"
+        ]
+    },
+    {
+        name: "Razi",
+        description: "Me duele siempre la guata, así que no me invites a comer\nBueno, invítame a comer, no hay problema\nFui a una piscina y me enfermé\nTe leo mientras me tomo mi segunda once",
+        images: [
+            "images/razi1.png",
+            "images/razi2.png",
+            "images/razi3.png"
+        ]
+    },
+
+    {
+        name: "Danni",
+        description: "Premio o castigo?\nBroma, pero si quieres no es broma\nJugador recien empezando en intermedio",
+        images: [
+            "images/dani1.png",
+            "images/dani2.png",
+            "images/dani3.png"
+        ]
+    },
+
+    {
+        name: "Xuma World Champ",
+        description: "Tienes dos segundos para dar like y ponerte a la fila para que te hable...",
+        images: [
+            "images/xuma1.png",
+            "images/xuma2.png",
+            "images/xuma3.png"
+        ]
+    },
+
+    {
+        name: "Takurillo",
+        description: "somos dos personas atrapadas en un cuerpo\nLunes martes miércoles, atiende César\nJueves, viernes sábado el Taku\nDomingo se descansa",
+        images: [
+            "images/taku1.png",
+            "images/taku2.png",
+            "images/taku3.png",
+            "images/taku4.png",
+            "images/taku5.png",
+            "images/taku6.png",
+        ]
+    },
+
+
     // Agrega más perfiles aquí
 ];
 
@@ -34,6 +110,9 @@ const likeButton = document.getElementById('like-button');
 const dislikeButton = document.getElementById('dislike-button');
 
 let currentProfileIndex = 0;
+
+// Mezclar el array de perfiles al cargar la página
+shuffleArray(profiles);
 
 // Función para mostrar el siguiente perfil
 function showNextProfile() {
@@ -88,7 +167,7 @@ function showNextProfile() {
 
     const description = document.createElement('div');
     description.classList.add('profile-description');
-    description.innerText = profile.description;
+    description.innerHTML = profile.description.replace(/\n/g, '<br>');
     profileInfo.appendChild(description);
 
     card.appendChild(profileInfo);
